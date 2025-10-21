@@ -23,7 +23,7 @@ activations_in_float32: False
 decoder_block: "llama2"
 
 # Hardware selection (if set, overrides with configs/hardware/{hardware}.yml)
-hardware: ""
+hardware: "cpu"
 
 # Output directory
 base_output_directory: ""
