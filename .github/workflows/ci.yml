@@ -1,12 +1,22 @@
-# Sz-Ltc/.github/.github/workflows/test-self.yml
-name: Test Self Reusable Workflow
+name: HLO Exporter CI/CD Pipeline
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+permissions:
+  contents: read
+  packages: read
 
 jobs:
-  call-own-workflow:
-    uses: ./.github/workflows/reusable-tests.yml
+  ci:
+    uses: Sz-Ltc/.github/.github/workflows/reusable-python-ci.yml@main
     with:
       python-version: '3.11'
-      install-command: 'echo "test"'
+      install-command: 'pip install -e ".[dev]"'
+      # 如果项目有自定义 ruff 配置，可以指定
+      # ruff-config-path: 'ruff.toml'
+    secrets:
+      ORG_CI_TOKEN: ${{ secrets.ORG_CI_TOKEN }}
