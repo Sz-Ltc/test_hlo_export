@@ -1,0 +1,85 @@
+# Basic model configuration
+dtype: "bfloat16"
+weight_dtype: "bfloat16"
+matmul_precision: "default"
+
+# Model dimensions
+base_emb_dim: 2048
+base_num_query_heads: 16
+base_num_kv_heads: 16
+base_mlp_dim: 7168
+base_num_decoder_layers: 16
+head_dim: 128
+vocab_size: 32000
+
+# Normalization
+normalization_layer_epsilon: 1.e-05
+
+# MLP configuration
+mlp_activations: ["silu", "linear"]
+activations_in_float32: False
+
+# Decoder block type
+decoder_block: "llama2"
+
+# Hardware selection (if set, overrides with configs/hardware/{hardware}.yml)
+hardware: "cpu"
+
+# Output directory
+base_output_directory: ""
+
+# Run name
+run_name: "export_hlo"
+
+# Model name (for override)
+model_name: "default"
+override_model_config: False
+
+# Attention configuration
+attention: "dot_product"
+
+# Checkpointing (disabled for HLO export)
+enable_checkpointing: False
+
+# Logging
+log_config: True
+
+# MLA config
+q_lora_rank: 0
+kv_lora_rank: 512
+qk_nope_head_dim: 128
+qk_rope_head_dim: 64
+
+# GQA config
+num_kv_heads: 8
+
+# Attention shared config
+num_query_heads: 16
+emb_dim: 2048
+attention_out_projection_use_bias: True
+rope_max_timescale: 10000
+rope_min_timescale: 1
+
+# embedding
+use_iota_embed: False
+embedding_data_sharding: ['X', 'Y']
+
+# Model sharding
+attention_sharding:
+  - [['X', 'Y'], ['X', null], [null, 'Y'], null]
+mlp_sharding:
+  - [[null, 'Y'], [null, 'Y'], ['Y', null]]
+
+# Data sharding
+data_sharding: ['X', 'Y', null]
+output_sharding: ['X', 'Y', null]
+
+# Experimental parameters
+test_data_sharding: ['X', 'Y', null]
+test_dense_general_sharding: ['X', 'Y']
+test_mlp_block_sharding: [[null, 'Y'], [null, 'Y'], ['Y', null]]
+# if q_lora_rank = 0
+test_mla_sharding: [['X', 'Y'], ['X', null], [null, 'Y'], null]
+# if q_lora_rank > 0
+#test_mla_sharding: [['X', 'Y'], ['X', null], [null, 'Y'], null, [null, 'Y']]
+test_gqa_sharding: [['X', 'Y'], ['X', null], [null, 'Y'], null]

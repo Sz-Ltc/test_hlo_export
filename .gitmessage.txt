@@ -1,0 +1,12 @@
+<type>[<SCOPE>]: <short-summary>
+
+Problem:
+  - Describe the issue/task
+
+Solution:
+  - Technical changes made
+
+Test:
+  - Validation steps/testcases
+
+JIRA: <XXX-<num>>

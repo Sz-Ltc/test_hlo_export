@@ -1,0 +1,11 @@
+__pycache__/
+*/__pycache__/
+hlo_outputs/
+.vscode/
+hlo_compare/
+tensorboard/
+tests/hlo_outputs/
+.DS_Store
+.coverage
+.idea/
+.ruff_cache/

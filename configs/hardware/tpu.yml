@@ -1,0 +1,20 @@
+vendor: google
+model: v6e          # silicon model name
+chips: 1            # chip number
+
+memory:
+  hbm_gib: 32
+  hbm_bandwidth_gbps: 1640
+
+interconnect:
+  topology: 2d-mesh           # 2d-mesh | 2d-torus | 3d-mesh | ...
+  chip_mesh_bandwidth_gbps: 448
+  mesh_shape: [1, 1]
+  mesh_name: ['X', 'Y']       # X by Y chip mesh for this slice
+
+metrics:                    
+  peak_tflops:
+    bf16: 918
+    int8: 1836
+    int4: 3672
+  sustained_fraction_hint: 0.6   # 60% of peak

@@ -1,0 +1,20 @@
+vendor: null
+model: null          # silicon model name
+chips: 1            # chip number
+
+memory:
+  hbm_gib: 0
+  hbm_bandwidth_gbps: 0
+
+interconnect:
+  topology: 2d-mesh           # 2d-mesh | 2d-torus | 3d-mesh | ...
+  chip_mesh_bandwidth_gbps: 0
+  mesh_shape: [2, 4]
+  mesh_name: ['X', 'Y']      # X by Y chip mesh for this slice
+
+metrics:
+  peak_tflops:
+    bf16: 0
+    int8: 0
+    int4: 0
+  sustained_fraction_hint: 0   # 0% of peak
