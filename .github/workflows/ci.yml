@@ -6,17 +6,10 @@ on:
   pull_request:
     branches: [ main, develop ]
 
-permissions:
-  contents: read
-  packages: read
-
 jobs:
-  ci:
-    uses: Sz-Ltc/.github/.github/workflows/reusable-python-ci.yml@main
+  commit-check:
+    uses: Sz-Ltc/.github/.github/workflows/reusable-commit-check.yml@main
     with:
       python-version: '3.11'
-      install-command: 'pip install -e ".[dev]"'
-      # 如果项目有自定义 ruff 配置，可以指定
-      # ruff-config-path: 'ruff.toml'
     secrets:
       ORG_CI_TOKEN: ${{ secrets.ORG_CI_TOKEN }}
